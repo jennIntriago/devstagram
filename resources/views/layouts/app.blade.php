@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- Este stack reserva un espacio para poder agregar hojas de estilos que sean diferentes o no se requieran en todas las vistas --}}
     @stack('styles')
     <title>DevStagram - @yield('titulo')</title>
     {{-- El helper asset apunta a la carpeta public y permite llevar los estilos dinamicamente --}}

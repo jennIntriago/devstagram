@@ -14,7 +14,6 @@ class ImagenController extends Controller
         $imagen = $request->file('file');
         //genera un id unico para cada una de las imagenes
         $nombreImagen = Str::uuid() . "." . $imagen->extension();
-
         //Usamos intervention image para crearla
         $imagenServidor = Image::make($imagen);
         $imagenServidor->fit(1000, 1000);
