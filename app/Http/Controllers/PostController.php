@@ -14,10 +14,10 @@ class PostController extends Controller
         $this->middleware('auth');
     }
     public function index(User $user){
-
-        // dd($user->username);
+        $posts = Post::where('user_id', $user->id)->paginate(20);
         return view('dashboard', [
-            'user' => $user
+            'user' => $user,
+            'posts' => $posts
         ]);
     }
 
@@ -39,12 +39,21 @@ class PostController extends Controller
         // ]);
 
         //OTRA FORMA DE REGISTRAR REGISTROS
-        $post = new Post;
-        $post-> titulo = $request->titulo;
-        $post->descripcion = $request->descripcion;
-        $post->imagen = $request->imagen;
-        $post->user_id = auth()->user()->id;
-        $post->save();
+        // $post = new Post;
+        // $post-> titulo = $request->titulo;
+        // $post->descripcion = $request->descripcion;
+        // $post->imagen = $request->imagen;
+        // $post->user_id = auth()->user()->id;
+        // $post->save();
+
+        //3ra Forma de guardar los datos en base a relaciones
+        $request->user()->posts()->create([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'imagen' => $request->imagen,
+            'user_id'=> auth()->user()->id,
+        ]);
+
 
         return redirect()->route('posts.index', auth()->user()->username);
     }
