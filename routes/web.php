@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ComentarioController;
 
@@ -62,4 +63,6 @@ Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('
 //Cambie orden de esta ruta -- variables en
 Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.index');
 
-
+//Siguiendo usuarios
+Route::post('/{user:username}/follow', [FollowerController::class, 'store'])->name('users.follow');
+Route::delete('/{user:username}/unfollow', [FollowerController::class, 'destroy'])->name('users.unfollow');
