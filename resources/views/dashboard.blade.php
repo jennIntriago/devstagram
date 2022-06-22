@@ -33,8 +33,8 @@
                     <span class="font-normal">@choice('seguidor|seguidores', $user->followers->count()) </span>
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
-                    0
-                    <span class="font-normal">Siguiendo</span>
+                    {{ $user->followings->count() }}
+                    <span class="font-normal">Siguiendo </span>
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
                     {{ $user->posts->count() }}
@@ -70,7 +70,7 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 @foreach ($posts as $post)
                     <div>
-                        <a href="{{ route('posts.show', ['post' => $post, 'user' => $user]) }}">
+                        <a href="{{ route('posts.show', ['post' => $post, 'user' => $post->user]) }}">
                             <img src="{{ asset('uploads') . '/' . $post->imagen }}"
                                 alt="Imagen del post {{ $post->titulo }}">
                         </a>
