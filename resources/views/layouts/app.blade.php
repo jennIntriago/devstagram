@@ -10,6 +10,7 @@
     {{-- El helper asset apunta a la carpeta public y permite llevar los estilos dinamicamente --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @livewireStyles
 
 </head>
 
@@ -61,6 +62,7 @@
     <footer class="mt-10 text-center p-5 text-gray-500 font-bold uppercase">
         DevStagram - Todos los derechos reservados {{ now()->year }}
     </footer>
+    @livewireScripts
 </body>
 
 </html>
